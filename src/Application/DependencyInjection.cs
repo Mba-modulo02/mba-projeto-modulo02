@@ -1,4 +1,4 @@
-﻿using Core.Configuration;
+using Core.Configuration;
 using Core.Data;
 using Core.Data.Repositories;
 using Core.Services;
@@ -55,17 +55,19 @@ public static class DependencyInjection
                 options.SignIn.RequireConfirmedEmail = false;
                 options.User.RequireUniqueEmail = true;
             })
+			.AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
     }
 
     private static void AddRepositoriesAndServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddScoped<IProductRepository, ProductRepository>();
-        builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-        builder.Services.AddScoped<ISellerRepository, SellerRepository>();
-        builder.Services.AddScoped<ICategoryService, CategoryService>();
-        builder.Services.AddScoped<IProductService, ProductService>();
-        builder.Services.AddScoped<IUserService, UserService>();
+        builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+        builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+        builder.Services.AddScoped<IVendedorRepository, VendedorRepository>();
+        builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+        builder.Services.AddScoped<IProdutoService, ProdutoService>();
+		builder.Services.AddScoped<IVendedorService, VendedorService>();
+		builder.Services.AddScoped<IUserService, UserService>();
     }
 
     private static void AddCulture()
