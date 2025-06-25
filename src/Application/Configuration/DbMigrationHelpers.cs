@@ -116,9 +116,12 @@ public static class DbMigrationHelpers
         await CreateRoleAsync(roleManager, "Cliente");
 
         await AddRoleClaimAsync(context, roleManager, "Admin", new Claim("Produtos", "AD,VI,ED,EX"));
+        await AddRoleClaimAsync(context, roleManager, "Admin", new Claim("Vendedores", "AD,VI,ED,EX"));
+        await AddRoleClaimAsync(context, roleManager, "Admin", new Claim("Clientes", "AD,VI,ED,EX"));
         await AddRoleClaimAsync(context, roleManager, "Admin", new Claim("Categorias", "AD,VI,ED,EX"));
         await AddRoleClaimAsync(context, roleManager, "Vendedor", new Claim("Produtos", "AD,VI,ED,EX"));
         await AddRoleClaimAsync(context, roleManager, "Cliente", new Claim("Produtos", "VI"));
+        await AddRoleClaimAsync(context, roleManager, "Cliente", new Claim("Cliente", "AD,VI,ED,EX"));
     }
 
     private static async Task CreateRoleAsync(RoleManager<IdentityRole> roleManager, string roleName)
