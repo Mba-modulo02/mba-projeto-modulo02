@@ -11,7 +11,10 @@ namespace Core.Data.Repositories
     public class ClienteRepository : IClienteRepository
     {
         private readonly ApplicationDbContext _dbContext;
-
+        public ClienteRepository(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public async Task<Guid> CreateAsync(Cliente cliente, CancellationToken cancellationToken)
         {            
             await _dbContext.Clientes.AddAsync(cliente, cancellationToken);
@@ -40,9 +43,10 @@ namespace Core.Data.Repositories
 
         public Task<List<Cliente>> GetAsync(CancellationToken cancellationToken)
         {
-            return _dbContext.Clientes
+           var  retorno = _dbContext.Clientes
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
+            return retorno;
 
         }
 

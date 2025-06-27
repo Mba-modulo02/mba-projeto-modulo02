@@ -17,10 +17,10 @@ namespace Api.Controllers
             _clienteService = clienteService;
 
         }
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(typeof(List<Cliente>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(List<Categoria>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<Cliente>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Cliente>>> Get(CancellationToken cancellationToken)
         {
             List<Cliente>? resultado = await _clienteService.GetAsync(cancellationToken);
