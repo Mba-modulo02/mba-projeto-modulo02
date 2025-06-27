@@ -12,48 +12,20 @@ namespace Core.Services
     public class ClienteService : IClienteService
 
     {
-        public Task<Guid> CreateAsync(CreateClienteViewModel createClienteViewModel, CancellationToken cancellationToken)
+        private readonly IClienteRepository _clienteRepository;
+        public ClienteService(ClienteRepository clienteRepository)
         {
-            throw new NotImplementedException();
-        }
+            _clienteRepository = clienteRepository; 
 
-        public Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
+        }       
+        public async Task<List<Cliente>> GetAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Cliente> FindAsync(Guid id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Cliente>> GetAsync(CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> IsValidClienteAsync(Guid ClienteId, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(UpdateeClienteViewModel updateClienteViewModel, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
+            var retorno = await _clienteRepository.GetAsync(cancellationToken);
+            return retorno;
         }
     }
     public interface IClienteService
     {
-        public Task<List<Cliente>> GetAsync(CancellationToken cancellationToken);
-
-        public Task<Cliente> FindAsync(Guid id, CancellationToken cancellationToken);
-
-        public Task<Guid> CreateAsync(CreateClienteViewModel createClienteViewModel, CancellationToken cancellationToken);
-
-        public Task UpdateAsync(UpdateeClienteViewModel updateClienteViewModel, CancellationToken cancellationToken);
-
-        public Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken);
-
-        Task<bool> IsValidClienteAsync(Guid ClienteId, CancellationToken cancellationToken);
+        Task<List<Cliente>> GetAsync(CancellationToken cancellationToken);
     }
 }

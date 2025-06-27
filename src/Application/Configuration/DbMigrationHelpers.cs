@@ -105,7 +105,14 @@ public static class DbMigrationHelpers
             VendedorId = Guid.Parse(identityUser.Id),
             CategoriaId = categoria.Id
         });
-
+        await context.Clientes.AddAsync(new Cliente
+        {
+            Id = Guid.Parse(identityUser.Id),
+            Nome = "Desenvolvedor",
+            Telefone = "11999999999",
+            Email = "email@email.com",
+            Endereco = "Rua do Desenvolvedor, 123"
+        });
         await context.SaveChangesAsync();
     }
 
