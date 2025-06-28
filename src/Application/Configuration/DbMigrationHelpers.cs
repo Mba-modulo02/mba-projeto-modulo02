@@ -105,7 +105,14 @@ public static class DbMigrationHelpers
             VendedorId = Guid.Parse(identityUser.Id),
             CategoriaId = categoria.Id
         });
-
+        await context.Clientes.AddAsync(new Cliente
+        {
+            Id = Guid.Parse(identityUser.Id),
+            Nome = "Desenvolvedor",
+            Telefone = "11999999999",
+            Email = "email@email.com",
+            Endereco = "Rua do Desenvolvedor, 123"
+        });
         await context.SaveChangesAsync();
     }
 
@@ -116,9 +123,12 @@ public static class DbMigrationHelpers
         await CreateRoleAsync(roleManager, "Cliente");
 
         await AddRoleClaimAsync(context, roleManager, "Admin", new Claim("Produtos", "AD,VI,ED,EX"));
+        await AddRoleClaimAsync(context, roleManager, "Admin", new Claim("Vendedores", "AD,VI,ED,EX"));
+        await AddRoleClaimAsync(context, roleManager, "Admin", new Claim("Clientes", "AD,VI,ED,EX"));
         await AddRoleClaimAsync(context, roleManager, "Admin", new Claim("Categorias", "AD,VI,ED,EX"));
         await AddRoleClaimAsync(context, roleManager, "Vendedor", new Claim("Produtos", "AD,VI,ED,EX"));
         await AddRoleClaimAsync(context, roleManager, "Cliente", new Claim("Produtos", "VI"));
+        await AddRoleClaimAsync(context, roleManager, "Cliente", new Claim("Cliente", "AD,VI,ED,EX"));
     }
 
     private static async Task CreateRoleAsync(RoleManager<IdentityRole> roleManager, string roleName)

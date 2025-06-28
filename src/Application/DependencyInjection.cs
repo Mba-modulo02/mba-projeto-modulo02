@@ -68,6 +68,7 @@ public static class DependencyInjection
         builder.Services.AddScoped<IProdutoService, ProdutoService>();
 		builder.Services.AddScoped<IVendedorService, VendedorService>();
 		builder.Services.AddScoped<IUserService, UserService>();
+        builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
     }
 
     private static void AddCulture()
