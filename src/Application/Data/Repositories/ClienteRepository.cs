@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,12 +42,18 @@ namespace Core.Data.Repositories
                 .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);            
         }
 
-        public Task<List<Cliente>> GetAsync(CancellationToken cancellationToken)
+        public async Task<List<Cliente>> GetAsync(CancellationToken cancellationToken)
         {
-           var  retorno = _dbContext.Clientes
-                .AsNoTracking()
-                .ToListAsync(cancellationToken);
-            return retorno;
+            try
+            {
+                var retorno = await _dbContext.Clientes.ToListAsync(cancellationToken);
+
+                return retorno;
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
 
         }
 

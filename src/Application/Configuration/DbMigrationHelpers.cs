@@ -78,6 +78,16 @@ public static class DbMigrationHelpers
         await context.Categorias.AddAsync(categoria);
 
         await context.SaveChangesAsync();
+        if (context.Clientes.Any())
+            return;
+        var cliente = new Cliente { Email = "123@123",
+                                    Endereco="Rua Microsoft",
+                                    Nome = "Fulano de Tal",
+                                    Telefone = "123456",
+                                    Id = new Guid()
+        };
+        await context.Clientes.AddAsync(cliente);
+        await context.SaveChangesAsync();
 
         if (context.Produtos.Any())
             return;
@@ -117,8 +127,9 @@ public static class DbMigrationHelpers
 			{ "Admin", new List<Claim>
 				{
 					new Claim("Produtos", "AD,VI,ED,EX"),
-					new Claim("Categorias", "AD,VI,ED,EX")
-				}
+					new Claim("Categorias", "AD,VI,ED,EX"),
+                    new Claim("Clientes", "AD,VI,ED,EX")
+                }
 			},
 			{ "Vendedor", new List<Claim>
 				{
