@@ -5,15 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositorios;
 
-public class VendedorRepository : IVendedorRepository
+public class VendedorRepository : Repository<Vendedor>, IVendedorRepository
 {
-    private readonly ApplicationDbContext _dbContext;
-
-    public VendedorRepository(ApplicationDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
+    public VendedorRepository(ApplicationDbContext dbContext) : base(dbContext) { }
+ 
     public async Task<Guid> CreateAsync(Vendedor vendedor, CancellationToken cancellationToken)
     {
         await _dbContext.Vendedores.AddAsync(vendedor, cancellationToken);

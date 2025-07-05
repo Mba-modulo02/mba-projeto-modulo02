@@ -36,17 +36,17 @@ public class CriaProdutoViewModel
 
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     [Display(Name = "Imagem")]
-    public IFormFile ImagemUpload { get; set; }
+    public IFormFile ImagemUpload { get; set; } 
 
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     [StringLength(100, MinimumLength = 2, ErrorMessage = "O campo {0} precisa ter entre {1} e {2} caracteres")]
     [Display(Name = "Nome")]
-    public string Nome { get; set; }
+    public string Nome { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     [StringLength(300, MinimumLength = 2, ErrorMessage = "O campo {0} precisa ter entre {1} e {2} caracteres")]
     [Display(Name = "Descrição")]
-    public string Descricao { get; set; }
+    public string Descricao { get; set; } = string.Empty;
 
     [Currency]
     [Required(ErrorMessage = "O campo {0} é obrigatório")]

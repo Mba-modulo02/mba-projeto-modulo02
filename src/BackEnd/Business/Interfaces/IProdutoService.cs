@@ -25,4 +25,5 @@ public interface IProdutoService
 	Task<Guid> AtivarAsync(Guid id, CancellationToken cancellationToken);
 
 	Task<Guid> InativarAsync(Guid id, CancellationToken cancellationToken);
+
 }

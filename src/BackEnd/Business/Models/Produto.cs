@@ -15,15 +15,15 @@ namespace Business.Models
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "O campo {0} precisa ter entre {1} e {2} caracteres")]
         [Display(Name = "Nome")]
-        public string Nome { get; set; }
+        public string Nome { get; set; } = String.Empty;
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [StringLength(300, MinimumLength = 2, ErrorMessage = "O campo {0} precisa ter entre {1} e {2} caracteres")]
         [Display(Name = "Descrição")]
-        public string Descricao { get; set; }
+        public string Descricao { get; set; } = String.Empty;
 
         [Display(Name = "Imagem")]
-        public string Imagem { get; set; }
+        public string Imagem { get; set; } = String.Empty;
 
         [Currency]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
@@ -41,9 +41,9 @@ namespace Business.Models
 
         [NotMapped]
         [JsonIgnore]
-        public Vendedor Vendedor { get; set; }
+        public Vendedor Vendedor { get; set; } = new Vendedor();
 
         [NotMapped]
-        public Categoria Categoria { get; set; }
+        public Categoria Categoria { get; set; } = new Categoria();
     }
 }
