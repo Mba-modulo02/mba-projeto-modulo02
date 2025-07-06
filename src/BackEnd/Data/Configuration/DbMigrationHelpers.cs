@@ -78,6 +78,12 @@ public static class DbMigrationHelpers
         await context.Categorias.AddAsync(categoria);
 
         await context.SaveChangesAsync();
+        var cliente = new Cliente { Email = "123@dev.com", Nome = "Cliente Dev", Telefone = "11999999999", Endereco = "Rua do Dev, 123" };
+        if (!context.Clientes.Any())
+        {
+            await context.Clientes.AddAsync(cliente);
+            await context.SaveChangesAsync();
+        }
 
         if (context.Produtos.Any())
             return;
